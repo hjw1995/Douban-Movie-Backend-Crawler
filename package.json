@@ -1,6 +1,6 @@
 {
-  // "author": "吴家荣",
-  // "name": "豆瓣电影 win8应用商店应用后台",
+  "author": "wujiarong",
+  "name": "douban movie win8 stare app backend",
   "version": "0.0.1",
   "licenses": {
     "type": "MIT"
