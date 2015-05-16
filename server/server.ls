@@ -15,7 +15,8 @@ app.get '/:_movieId', (req, res)!->
 
     info-url = movie-api.one-movie-base-url + req.params._movieId
     comments-url = movie-api.comments-base-url + req.params._movieId + movie-api.comments-left-url
-    
+    # console.log comments-url
+    # comments-url = 'http://movie.douban.com/subject/25862355/comments?start=0&limit=20&sort=new_score'
     one-movie-crawler.get-one-movie-info info-url, comments-url, res
   else
     res.end 'Bad Request!'

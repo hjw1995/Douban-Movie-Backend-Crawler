@@ -36,5 +36,12 @@ get-base-movie-info = ($)->
     movie-IMDb-link     :   info.substring(info.indexOf('IMDb链接') + 7)
 
 get-movie-comments = ($)->
-  console.log $('.mod-bd').html!
-  '吴家荣'
+  all-comments = []
+
+  $('#comments .comment-item') .each (i, elem)!->
+    one-comment = 
+      username  : $('.comment h3 .comment-info a', this).text!
+      content   : $('.comment p', this).text!.trim!
+    all-comments .push one-comment
+
+  all-comments

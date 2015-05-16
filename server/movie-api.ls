@@ -3,7 +3,7 @@
 # 相同部分：'http://movie.douban.com/explore#!type=movie&tag=' 和 '&sort='
 # 单部电影的url：http://movie.douban.com/subject/24405378/
 # http://movie.douban.com/j/search_subjects?type=movie&tag=%E7%83%AD%E9%97%A8&sort=time&page_limit=20&page_start=0
-# http://movie.douban.com/subject/25745752/comments?sort=new_score
+# http://movie.douban.com/subject/25745752/comments?start=0&limit=20&sort=new_score
 
 url = {}
 
@@ -11,7 +11,7 @@ url.one-movie-base-url = 'http://movie.douban.com/subject/'
 
 url.comments-base-url = 'http://movie.douban.com/subject/'
 
-url.comments-left-url = '/comments?sort=new_score'
+url.comments-left-url = '/comments?start=0&limit=20&sort=new_score'
 
 url.movie-list-base-url = 'http://movie.douban.com/j/search_subjects?type=movie&tag='
 
