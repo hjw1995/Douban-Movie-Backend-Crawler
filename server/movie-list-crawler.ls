@@ -5,6 +5,6 @@ require! {'http', 'cheerio', 'url', 'request'}
 exports.get-the-movie-list = (douban-url, res)!->
   request douban-url, (error, response, body)!->
     if !error && response.statusCode == 200
-      console.log(body)
+      # console.log(body)
       res.send body
       
