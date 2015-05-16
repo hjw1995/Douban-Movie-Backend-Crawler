@@ -22,9 +22,11 @@ exports.get-the-movie-list = (douban-url, res)!->
 
         movie-list-info.push movie
 
+      movie-info = {name: 'wujr', age: 20}
+
       movie-list = 
-        movie-list-type : 'movie-list'
-        movie-list-info : movie-list-info
+        movie-info : movie-info
+        movie : movie-list-info
 
       mlxml = builder.build-object movie-list
 
