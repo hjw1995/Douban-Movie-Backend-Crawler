@@ -10,7 +10,22 @@ exports.get-the-movie-list = (douban-url, res)!->
 
       object-body = JSON.parse body
 
-      movie-list = [one-movie for one-movie in object-body.subjects]
-      mlxml = builder.buildObject movie-list
+      movie-list-info = []
+
+      for one-movie in object-body.subjects
+        movie = 
+          rate    : one-movie.rate
+          title   : one-movie.title
+          url     : one-movie.url
+          cover   : one-movie.cover
+          id      : one-movie.id
+
+        movie-list-info.push movie
+
+      movie-list = 
+        movie-list-type : 'movie-list'
+        movie-list-info : movie-list-info
+
+      mlxml = builder.build-object movie-list
 
       res.send mlxml
