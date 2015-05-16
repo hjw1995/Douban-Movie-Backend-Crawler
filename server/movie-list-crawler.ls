@@ -19,4 +19,4 @@ exports.get-the-movie-list = (douban-url, res)!->
       console.log mlxml
 
       # res.send JSON.stringify movie-list
-      res.send xml
+      res.send mlxml
