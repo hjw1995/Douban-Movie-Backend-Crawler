@@ -12,9 +12,12 @@ app.get '/tag=:_tag&sort=:_sortBy', (req, res)!->
 
 app.get '/:_movieId', (req, res)!->
   if /^[0-9]*$/.test req.params._movieId
-    url = movie-api.one-movie-base-url + req.params._movieId
-    # console.log 'url = ', url
-    result = one-movie-crawler.get-one-movie-info url
-    res.write result
+
+    info-url = movie-api.one-movie-base-url + req.params._movieId
+    comments-url = movie-api.comments-base-url + req.params._movieId + movie-api.comments-left-url
+    
+    one-movie-crawler.get-one-movie-info info-url, comments-url, res
+  else
+    res.end 'Bad Request!'
 
 exports = module.exports = app
