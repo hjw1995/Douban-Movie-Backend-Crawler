@@ -1,6 +1,6 @@
 # 但个页面抓取脚本
 
-require! {'cheerio', 'request'}
+require! {'cheerio', 'request', 'xml2js'}
 
 exports.get-one-movie-info = (info-url, comments-url, res)->
   request comments-url, (comments-error, comments-response, comments-body)!->
@@ -16,7 +16,10 @@ exports.get-one-movie-info = (info-url, comments-url, res)->
             base-info   :   get-base-movie-info info
             comments    :   get-movie-comments  comments
 
-          res.send JSON.stringify one-movie-info
+          builder = new xml2js.Builder!
+          omixml = builder.buildObject one-movie-info
+
+          res.send omixml
 
 get-base-movie-info = ($)->
   info = $('.subject.clearfix #info').text! .replace(/[\n]/ig, '') .replace(/\s+/g, "")
