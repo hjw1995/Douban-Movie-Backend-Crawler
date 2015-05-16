@@ -5,4 +5,5 @@ require! {'request'}
 exports.get-the-movie-list = (douban-url, res)!->
   request douban-url, (error, response, body)!->
     if !error && response.statusCode == 200
-      res.send body
+      object-body = JSON.parse body
+      res.send JSON.stringify object-body
