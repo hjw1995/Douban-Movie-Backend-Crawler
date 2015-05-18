@@ -15,9 +15,11 @@ url.comments-left-url = '/comments?start=0&limit=20&sort=new_score'
 
 url.movie-list-base-url = 'http://movie.douban.com/j/search_subjects?type=movie&tag='
 
-url.movie-list-midd-url = '&sort='
+url.movie-list-mida-url = '&sort='
 
-url.movie-list-tail-url = '&page_limit=20&page_start=0'
+url.movie-list-midb-url = '&page_limit='
+
+url.movie-list-tail-url = '&page_start=0'
 
 url.tags = ['热门', '最新', '经典', '可播放', '豆瓣高分', '冷门佳片', '华语', '欧美', '韩国', '日本', '动作', '喜剧', '爱情', '科幻', '悬疑', '恐怖', '动画']
 

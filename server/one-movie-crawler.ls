@@ -16,8 +16,6 @@ exports.get-one-movie-info = (info-url, comments-url, res)->
             base-info   :   get-base-movie-info info
             comments    :   get-movie-comments  comments
 
-          # console.log one-movie-info
-
           builder = new xml2js.Builder!
           omixml = builder.build-object one-movie-info
 

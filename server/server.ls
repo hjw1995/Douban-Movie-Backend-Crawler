@@ -5,13 +5,16 @@ app = express!
 movie-list-count = 0
 one-movie-count = 0
 
-app.get '/tag=:_tag&sort=:_sortBy', (req, res)!->
+app.get '/tag=:_tag&sort=:_sortBy&page_limit=:_page_limit', (req, res)!->
   if movie-api.tags.index-of(req.params._tag) isnt -1 and movie-api.sort-by.index-of(req.params._sortBy) isnt -1
 
     movie-list-count++
     console.log 'Get the movie list for the ' + movie-list-count + ' th time'
 
-    url = movie-api.movie-list-base-url + req.params._tag + movie-api.movie-list-midd-url + req.params._sortBy + movie-api.movie-list-tail-url
+    url = movie-api.movie-list-base-url + req.params._tag + movie-api.movie-list-mida-url + req.params._sortBy + movie-api.movie-list-midb-url + req.params._page_limit + movie-api.movie-list-tail-url
+
+    console.log url
+    
     url = encodeURI url
 
     movie-list-crawler.get-the-movie-list url, res
