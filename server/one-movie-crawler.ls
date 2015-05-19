@@ -14,7 +14,7 @@ exports.get-one-movie-info = (info-url, comments-url, res)->
 
           one-movie-info =
             base-info   :   get-base-movie-info info
-            comments    :   get-movie-comments  comments
+            # comments    :   get-movie-comments  comments
 
           builder = new xml2js.Builder!
           omixml = builder.build-object one-movie-info
@@ -66,12 +66,12 @@ get-base-movie-info = ($)->
     movie-another-name  :   movie-another-name
     movie-IMDb-link     :   info.substring(info.indexOf('IMDb链接') + 7)
 
-  base-info-array = []
+  # base-info-array = []
   
-  base-info-array.push base-info
-  base-info-array.push base-info
+  # base-info-array.push base-info
+  # base-info-array.push base-info
 
-  base-info-array
+  # base-info-array
 
 get-movie-comments = ($)->
   # console.log $.html!
