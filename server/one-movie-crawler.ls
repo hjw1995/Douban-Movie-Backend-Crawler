@@ -12,8 +12,11 @@ exports.get-one-movie-info = (info-url, comments-url, res)->
           info = cheerio.load info-body
           comments = cheerio.load comments-body
 
+          b = get-base-movie-info info
+
           one-movie-info =
-            base-info   :   get-base-movie-info info
+            a : b[0]
+            baseinfo   :   b
             # comments    :   get-movie-comments  comments
 
           builder = new xml2js.Builder!
@@ -52,26 +55,32 @@ get-base-movie-info = ($)->
     movie-length = info.substring info.indexOf('片长') + 3, info.indexOf('IMDb链接')
     movie-another-name = '无'
 
-  base-info = 
-    movie-name          :   $('#content h1 span') .text!
-    movie-image-src     :   $('.subject.clearfix #mainpic .nbgnbg img') .attr 'src'
-    movie-director      :   info.substring info.indexOf('导演') + 3     ,   info.indexOf('编剧')
-    movie-scriptwriter  :   info.substring info.indexOf('编剧') + 3     ,   info.indexOf('主演')
-    movie-leading-role  :   info.substring info.indexOf('主演') + 3     ,   info.indexOf('类型')
-    movie-type          :   movie-type
-    movie-made-in       :   info.substring info.indexOf('制片国家') + 8  ,   info.indexOf('语言')
-    movie-language      :   info.substring info.indexOf('语言') + 3      ,  info.indexOf('上映日期')
-    movie-be-on         :   movie-be-on
-    movie-length        :   movie-length
-    movie-another-name  :   movie-another-name
-    movie-IMDb-link     :   info.substring(info.indexOf('IMDb链接') + 7)
+  base = 
+    name          :   $('#content h1 span') .text!
+    imagesrc     :   $('.subject.clearfix #mainpic .nbgnbg img') .attr 'src'
+    director      :   info.substring info.indexOf('导演') + 3     ,   info.indexOf('编剧')
+    scriptwriter  :   info.substring info.indexOf('编剧') + 3     ,   info.indexOf('主演')
+    leadingrole  :   info.substring info.indexOf('主演') + 3     ,   info.indexOf('类型')
+    type          :   movie-type
+    madein       :   info.substring info.indexOf('制片国家') + 8  ,   info.indexOf('语言')
+    language      :   info.substring info.indexOf('语言') + 3      ,  info.indexOf('上映日期')
+    beon         :   movie-be-on
+    length        :   movie-length
+    anothername  :   movie-another-name
+    # IMDb-link     :   info.substring(info.indexOf('IMDb链接') + 7)
 
-  # base-info-array = []
-  
-  # base-info-array.push base-info
-  # base-info-array.push base-info
+  base-info-array = []
 
-  # base-info-array
+  base-info-array.push base
+  base-info-array.push base
+  base-info-array.push base
+  base-info-array.push base
+  base-info-array.push base
+  base-info-array.push base
+  base-info-array.push base
+  base-info-array.push base
+
+  base-info-array
 
 get-movie-comments = ($)->
   # console.log $.html!
