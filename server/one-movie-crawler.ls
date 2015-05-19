@@ -55,8 +55,8 @@ get-base-movie-info = ($)->
         right-index = get-info-item-right-index info, info-item, left-index
 
       # console.log left-index, right-index, info-item[i]
-
-      base-info[info-var[i]] = info.substring left-index, right-index 
+      if right-index != 0
+        base-info[info-var[i]] = info.substring left-index, right-index 
 
   # console.log base-info
   base-info-array = []
