@@ -68,13 +68,16 @@ get-base-movie-info = ($)->
 get-info-item-right-index = (info, info-item, left-index)->
   colon-index = info.indexOf ':', left-index
 
-  substring-before-colon = info.substring (colon-index - 10), colon-index
-
   right-index = 0
 
-  for i from 0 to info-item.length - 1
-    if substring-before-colon.indexOf(info-item[i]) != -1
-      right-index = info.indexOf info-item[i]
+  if colon-index == -1
+    right-index = info.length
+  else
+    substring-before-colon = info.substring (colon-index - 10), colon-index
+
+    for i from 0 to info-item.length - 1
+      if substring-before-colon.indexOf(info-item[i]) != -1
+        right-index = info.indexOf info-item[i]
 
   right-index
 
