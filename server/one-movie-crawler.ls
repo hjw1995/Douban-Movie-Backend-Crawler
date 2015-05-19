@@ -27,7 +27,7 @@ get-base-movie-info = ($)->
   # console.log info
 
   info-item = ['导演', '编剧', '主演', '类型', '官方网站', '制片国家/地区', '语言', '上映日期', '片长', '又名', 'IMDb链接']
-  info-var  = ['director', 'scriptwriter', 'leadingrole', 'officialWebsite', 'type', 'madein', 'language', 'beon', 'length', 'anothername', 'IMDbLink']
+  info-var  = ['director', 'scriptwriter', 'leadingrole', 'type', 'officialWebsite', 'madein', 'language', 'beon', 'length', 'anothername', 'IMDbLink']
 
   base-info = 
     name              :   $('#content h1 span') .text!
