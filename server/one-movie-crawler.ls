@@ -12,11 +12,8 @@ exports.get-one-movie-info = (info-url, comments-url, res)->
           info = cheerio.load info-body
           comments = cheerio.load comments-body
 
-          b = get-base-movie-info info
-
           one-movie-info =
-            # a : b[0]
-            baseinfo   :   b
+            baseinfo    :   get-base-movie-info info
             comments    :   get-movie-comments  comments
 
           builder = new xml2js.Builder!
@@ -55,7 +52,7 @@ get-base-movie-info = ($)->
     movie-length = info.substring info.indexOf('片长') + 3, info.indexOf('IMDb链接')
     movie-another-name = '无'
 
-  base = 
+  base-info = 
     name          :   $('#content h1 span') .text!
     imagesrc     :   $('.subject.clearfix #mainpic .nbgnbg img') .attr 'src'
     director      :   info.substring info.indexOf('导演') + 3     ,   info.indexOf('编剧')
@@ -67,24 +64,15 @@ get-base-movie-info = ($)->
     beon         :   movie-be-on
     length        :   movie-length
     anothername  :   movie-another-name
-    # IMDb-link     :   info.substring(info.indexOf('IMDb链接') + 7)
+    IMDb-link     :   info.substring(info.indexOf('IMDb链接') + 7)
 
   base-info-array = []
 
-  base-info-array.push base
-  # base-info-array.push base
-  # base-info-array.push base
-  # base-info-array.push base
-  # base-info-array.push base
-  # base-info-array.push base
-  # base-info-array.push base
-  # base-info-array.push base
+  base-info-array.push base-info
 
   base-info-array
 
 get-movie-comments = ($)->
-  # console.log $.html!
-  # console.log $('#comments .comment-item').text!
   all-comments = []
 
   $('#comments .comment-item') .each (i, elem)!->
