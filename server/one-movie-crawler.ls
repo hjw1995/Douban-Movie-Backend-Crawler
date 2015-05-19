@@ -66,6 +66,13 @@ get-base-movie-info = ($)->
     movie-another-name  :   movie-another-name
     movie-IMDb-link     :   info.substring(info.indexOf('IMDb链接') + 7)
 
+  base-info-array = []
+  
+  base-info-array.push base-info
+  base-info-array.push base-info
+
+  base-info-array
+
 get-movie-comments = ($)->
   # console.log $.html!
   # console.log $('#comments .comment-item').text!
