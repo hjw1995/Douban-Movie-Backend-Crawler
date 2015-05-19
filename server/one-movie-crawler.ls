@@ -15,7 +15,7 @@ exports.get-one-movie-info = (info-url, comments-url, res)->
           b = get-base-movie-info info
 
           one-movie-info =
-            a : b[0]
+            # a : b[0]
             baseinfo   :   b
             comments    :   get-movie-comments  comments
 
@@ -72,13 +72,13 @@ get-base-movie-info = ($)->
   base-info-array = []
 
   base-info-array.push base
-  base-info-array.push base
-  base-info-array.push base
-  base-info-array.push base
-  base-info-array.push base
-  base-info-array.push base
-  base-info-array.push base
-  base-info-array.push base
+  # base-info-array.push base
+  # base-info-array.push base
+  # base-info-array.push base
+  # base-info-array.push base
+  # base-info-array.push base
+  # base-info-array.push base
+  # base-info-array.push base
 
   base-info-array
 
