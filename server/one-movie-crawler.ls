@@ -24,53 +24,56 @@ exports.get-one-movie-info = (info-url, comments-url, res)->
 get-base-movie-info = ($)->
   info = $('.subject.clearfix #info').text! .replace(/[\n]/ig, '') .replace(/\s+/g, "")
 
-  # console.log info
-
-  movie-type          = ''
-  movie-be-on         = ''
-  movie-length        = ''
-  movie-another-name  = ''
-
-  if info.indexOf('官方网站') != -1
-    movie-type = info.substring info.indexOf('类型') + 3, info.indexOf('官方网站')
-  else
-    movie-type = info.substring info.indexOf('类型') + 3, info.indexOf('制片国家')
-
-  if info.indexOf('片长') != -1
-    movie-be-on = info.substring info.indexOf('上映日期') + 5, info.indexOf('片长')
-  else
-    movie-be-on = info.substring info.indexOf('上映日期') + 5, info.indexOf('又名')
-
-  if info.indexOf('又名') !=  -1
-    if info.indexOf('片长') != -1
-      movie-length      = info.substring info.indexOf('片长') + 3, info.indexOf('又名')
-    else
-      movie-length      = '无'
-
-    movie-another-name  = info.substring info.indexOf('又名') + 3, info.indexOf('IMDb链接')
-  else
-    movie-length = info.substring info.indexOf('片长') + 3, info.indexOf('IMDb链接')
-    movie-another-name = '无'
+  info-item = ['导演', '编剧', '主演', '类型', '制片国家/地区', '语言', '上映日期', '片长', '又名', 'IMDb链接']
+  info-var  = ['director', 'scriptwriter', 'leadingrole', 'type', 'madein', 'language', 'beon', 'length', 'anothername', 'IMDbLink']
 
   base-info = 
     name          :   $('#content h1 span') .text!
-    imagesrc     :   $('.subject.clearfix #mainpic .nbgnbg img') .attr 'src'
-    director      :   info.substring info.indexOf('导演') + 3     ,   info.indexOf('编剧')
-    scriptwriter  :   info.substring info.indexOf('编剧') + 3     ,   info.indexOf('主演')
-    leadingrole  :   info.substring info.indexOf('主演') + 3     ,   info.indexOf('类型')
-    type          :   movie-type
-    madein       :   info.substring info.indexOf('制片国家') + 8  ,   info.indexOf('语言')
-    language      :   info.substring info.indexOf('语言') + 3      ,  info.indexOf('上映日期')
-    beon         :   movie-be-on
-    length        :   movie-length
-    anothername  :   movie-another-name
-    IMDb-link     :   info.substring(info.indexOf('IMDb链接') + 7)
+    imagesrc      :   $('.subject.clearfix #mainpic .nbgnbg img') .attr 'src'
+    director      :   '无'
+    scriptwriter  :   '无'
+    leadingrole   :   '无'
+    type          :   '无'
+    madein        :   '无'
+    language      :   '无'
+    beon          :   '无'
+    length        :   '无'
+    anothername   :   '无'
+    IMDb-link     :   '无'
 
+  for i from 0 to info-item.length - 1
+    if (info.indexOf(info-item[i]) != -1)
+
+      left-index  = info.indexOf(info-item[i]) + info-item[i].length + 1
+
+      if i == info-item.length - 1
+        right-index = info.length
+      else
+        right-index = get-info-item-right-index info, info-item, left-index
+
+      # console.log left-index, right-index, info-item[i]
+
+      base-info[info-var[i]] = info.substring left-index, right-index 
+
+  # console.log base-info
   base-info-array = []
 
   base-info-array.push base-info
 
   base-info-array
+
+get-info-item-right-index = (info, info-item, left-index)->
+  colon-index = info.indexOf ':', left-index
+
+  substring-before-colon = info.substring (colon-index - 10), colon-index
+
+  right-index = 0
+
+  for i from 0 to info-item.length - 1
+    if substring-before-colon.indexOf(info-item[i]) != -1
+      right-index = info.indexOf info-item[i]
+
+  right-index
 
 get-movie-comments = ($)->
   all-comments = []
