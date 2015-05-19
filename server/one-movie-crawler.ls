@@ -75,8 +75,9 @@ get-movie-comments = ($)->
     one-comment = 
       username  : $('.comment h3 .comment-info a', this).text!
       content   : $('.comment p', this).text!.trim!
-    all-comments .push one-comment
+      avatar    : $('.avatar a img', this).attr 'src'
+      time      : $('.comment .comment-info span', this).text! .replace(/[\n]/ig, '') .replace(/\s+/g, "")
 
-  # console.log all-comments
+    all-comments .push one-comment
 
   all-comments

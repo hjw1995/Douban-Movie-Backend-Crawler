@@ -13,8 +13,6 @@ app.get '/tag=:_tag&sort=:_sortBy&page_limit=:_page_limit', (req, res)!->
 
     url = movie-api.movie-list-base-url + req.params._tag + movie-api.movie-list-mida-url + req.params._sortBy + movie-api.movie-list-midb-url + req.params._page_limit + movie-api.movie-list-tail-url
 
-    console.log url
-    
     url = encodeURI url
 
     movie-list-crawler.get-the-movie-list url, res
